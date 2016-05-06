@@ -12,7 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <java.main.class>com.sn.table.TableDemo</java.main.class>
+      <java.main.class>com.sn.MainFrame</java.main.class>
   </properties>
 
   <dependencies>
