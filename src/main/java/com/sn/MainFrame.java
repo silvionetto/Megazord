@@ -66,8 +66,14 @@ public class MainFrame extends JFrame {
 
     // Simulate doing something useful.
     for(int i=0; i<=10; i++) {
-     // Bad practice
-     countLabel1.setText(Integer.toString(i));
+
+     final int count = i;
+
+     SwingUtilities.invokeLater(new Runnable() {
+      public void run() {
+       countLabel1.setText(Integer.toString(count));
+      }
+     });
 
      try {
       Thread.sleep(1000);
@@ -76,8 +82,12 @@ public class MainFrame extends JFrame {
      }
     }
 
-    // Bad practice
-    statusLabel.setText("Completed.");
+    SwingUtilities.invokeLater(new Runnable() {
+     public void run() {
+      statusLabel.setText("Completed.");
+     }
+    });
+
    }
   };
 
