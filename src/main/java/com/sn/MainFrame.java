@@ -61,37 +61,41 @@ public class MainFrame extends JFrame {
  }
 
  private void start() {
-  Thread worker = new Thread() {
-   public void run() {
-
+  SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
+   @Override
+   protected Boolean doInBackground() throws Exception {
     // Simulate doing something useful.
-    for(int i=0; i<=10; i++) {
-
-     final int count = i;
-
-     SwingUtilities.invokeLater(new Runnable() {
-      public void run() {
-       countLabel1.setText(Integer.toString(count));
-      }
-     });
-
-     try {
-      Thread.sleep(1000);
-     } catch (InterruptedException e) {
-
-     }
+    for (int i = 0; i <= 10; i++) {
+     Thread.sleep(1000);
+     System.out.println("Running " + i);
     }
 
-    SwingUtilities.invokeLater(new Runnable() {
-     public void run() {
-      statusLabel.setText("Completed.");
-     }
-    });
-
+    // Here we can return some object of whatever type
+    // we specified for the first template parameter.
+    // (in this case we're auto-boxing 'true').
+    return true;
    }
+
+   // Can safely update the GUI from this method.
+   protected void done() {
+
+    boolean status;
+    try {
+     // Retrieve the return value of doInBackground.
+     status = get();
+     statusLabel.setText("Completed with status: " + status);
+    } catch (InterruptedException e) {
+     // This is thrown if the thread's interrupted.
+    } catch (ExecutionException e) {
+     // This is thrown if we throw an exception
+     // from doInBackground.
+    }
+   }
+
+
   };
 
-  worker.start();
+  worker.execute();
  }
  
  public static void main(String[] args) {
