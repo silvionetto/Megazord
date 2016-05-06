@@ -61,13 +61,16 @@ public class MainFrame extends JFrame {
  }
 
  private void start() {
-  SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
+  SwingWorker<Boolean, Integer> worker = new SwingWorker<Boolean, Integer>() {
    @Override
    protected Boolean doInBackground() throws Exception {
     // Simulate doing something useful.
     for (int i = 0; i <= 10; i++) {
      Thread.sleep(1000);
-     System.out.println("Running " + i);
+
+     // The type we pass to publish() is determined
+     // by the second template parameter.
+     publish(i);
     }
 
     // Here we can return some object of whatever type
@@ -90,6 +93,16 @@ public class MainFrame extends JFrame {
      // This is thrown if we throw an exception
      // from doInBackground.
     }
+   }
+
+   @Override
+   // Can safely update the GUI from this method.
+   protected void process(List<Integer> chunks) {
+    // Here we receive the values that we publish().
+    // They may come grouped in chunks.
+    int mostRecentValue = chunks.get(chunks.size()-1);
+
+    countLabel1.setText(Integer.toString(mostRecentValue));
    }
 
 
