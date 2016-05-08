@@ -1,4 +1,4 @@
-package com.cpqi;
+package com.sn;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
