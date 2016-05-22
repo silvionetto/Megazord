@@ -23,6 +23,12 @@
             <version>${concordion.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- http://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.4.6</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -60,6 +66,7 @@
             <plugin>
                 <groupId>com.soebes.maven.plugins.dmg</groupId>
                 <artifactId>doxygen-maven-plugin</artifactId>
+                <version>1.0.1</version>
                 <configuration>
                     <projectName>${project.artifactId}</projectName>
                     <projectNumber>${project.version}</projectNumber>
