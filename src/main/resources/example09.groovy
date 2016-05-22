@@ -7,6 +7,7 @@ def driver = 'org.apache.derby.jdbc.EmbeddedDriver'
 def sql = Sql.newInstance(url, user, password, driver)
 
 // use 'sql' instance ...
+/*
 sql.execute """
     CREATE TABLE Athlete (
                   athleteId   INTEGER NOT NULL PRIMARY KEY,
@@ -35,6 +36,16 @@ sql.query('SELECT firstname, lastname from Athlete') { resultSet ->
         def last = resultSet.getString('lastname')
         println "$first $last"
     }
+}
+
+*/
+
+
+def fmt = new java.text.SimpleDateFormat('dd. MMM yyyy (E)', Locale.US)
+
+sql.eachRow('SELECT * from Athlete') {  athlete ->
+    println "$athlete.firstname $athlete.lastname"
+    println 'born on' + fmt.format(athlete.dateOfBirth)
 }
 
 sql.close()
