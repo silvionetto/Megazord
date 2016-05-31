@@ -11,5 +11,8 @@ Using SwingWorker.
 Using Groovy
 
 ### Release 1.2 - 20160531 ###
+<<<<<<< HEAD
 Using rebase
+=======
+>>>>>>> refs/remotes/origin/develop
 Using Groovy
