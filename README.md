@@ -9,3 +9,6 @@ Using SwingWorker.
 
 ### Release 1.1 - 20160531 ###
 Using Groovy
+
+### Release 1.2 - 20160531 ###
+Using Groovy
